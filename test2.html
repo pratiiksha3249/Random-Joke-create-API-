@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Joke App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(129, 217, 129);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        #parent-div {
+            background-color: rgb(25, 24, 24);
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            color: white;
+        }
+
+        #img-div {
+            margin-bottom: 20px;
+        }
+
+        #img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        #para-div {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        #btn {
+            padding: 15px 20px;
+            background-color: rgb(104, 213, 104);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #btn:hover {
+            background-color: rgb(90, 190, 90);
+        }
+
+        @media (max-width: 768px) {
+            #img {
+                width: 80px;
+                height: 80px;
+            }
+
+            #para-div {
+                font-size: 1rem;
+            }
+
+            #btn {
+                padding: 12px 18px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #img {
+                width: 70px;
+                height: 70px;
+            }
+
+            #para-div {
+                font-size: 0.9rem;
+            }
+
+            #btn {
+                padding: 10px 16px;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="parent-div">
+        <div id="img-div">
+            <img id="img" src="lol.jfif" alt="Random image">
+        </div>
+
+        <div id="para-div">
+            <p id="p">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam magnam fugiat autem.</p>
+        </div>
+
+        <button id="btn">Get Random Joke</button>
+    </div>
+
+    <script>
+        const jokeCon = document.getElementById("p");
+        const btn = document.getElementById("btn");
+        const url = "https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,explicit&type=single";
+        let getjoke = async () => {
+let responce=await fetch(url);  
+let data=await responce.json()
+.then(item=>{
+
+    jokeCon.textContent= `${item.joke}`;
+});
+
+    }
+
+    btn.addEventListener("click",getjoke);
+    getjoke();
+
+
+
+    </script>
+
+</body>
+
+</html>
